@@ -1,6 +1,8 @@
 package com.lucasricardo1.cardschallenge;
 
+import com.lucasricardo1.cardschallenge.client.DrawCardsClient;
 import com.lucasricardo1.cardschallenge.client.ShuffleCardsClient;
+import com.lucasricardo1.cardschallenge.dto.response.DrawCardsResponse;
 import com.lucasricardo1.cardschallenge.dto.response.ShuffleCardsResponse;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,8 +14,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class CardsChallengeApplication implements CommandLineRunner {
 
 	private final ShuffleCardsClient shuffleCardsClient;
-	public CardsChallengeApplication(ShuffleCardsClient shuffleCardsClient) {
+
+	private final DrawCardsClient drawCardsClient;
+	public CardsChallengeApplication(ShuffleCardsClient shuffleCardsClient, DrawCardsClient drawCardsClient) {
 		this.shuffleCardsClient = shuffleCardsClient;
+		this.drawCardsClient = drawCardsClient;
 	}
 
 	public static void main(String[] args) {
@@ -24,6 +29,9 @@ public class CardsChallengeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		ShuffleCardsResponse shuffleCards = this.shuffleCardsClient.shuffleCards();
 		System.out.println(shuffleCards);
+
+		DrawCardsResponse drawCards = this.drawCardsClient.drawCards(shuffleCards.getDeck_id(), 5);
+		System.out.println(drawCards);
 	}
 
 }
