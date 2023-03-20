@@ -139,7 +139,7 @@ public class CardsService {
                     drawHandsResponses.get(3).getNome() + " = " +
                     Arrays.toString(drawHandsResponses.get(3).getValues().toArray());
         } else {
-            return "Vencedor é o " + ((Map.Entry<String, Long>) finalValues.get(3)).getKey();
+            return "Vencedor é o " + ((Map.Entry<String, Long>) finalValues.get(3)).getKey() + " com " + ((Map.Entry<?, ?>) finalValues.get(3)).getValue() + " pontos";
         }
 
 
