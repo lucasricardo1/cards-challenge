@@ -1,5 +1,6 @@
 package com.lucasricardo1.cardschallenge.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +12,12 @@ import java.util.List;
 @NoArgsConstructor
 public class DrawCardsResponse {
 
-        boolean success;
+        private boolean success;
 
-        String deck_id;
+        @JsonProperty("deck_id")
+        private String deckId;
 
-        List<CardsResponse> cards;
+        private List<CardsResponse> cards;
 
-        int remaining;
+        private int remaining;
 }
